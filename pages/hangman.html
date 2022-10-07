@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/css/style.min.css">
+    <title>Hangman</title>
+</head>
+<body>
+    <h1>Hangman</h1>
+    <img id="imgMan" src="../images/hangman/blank.png" alt="Blank picture" height="120">
+    <p id="word"></p>
+    <p id="hint"></p>
+    <div id="buttonBox"></div>
+
+    <script>
+        const image = document.getElementById('imgMan');
+        const secretText = document.getElementById('word');
+        const hintText = document.getElementById('hint');
+        const buttonsDiv = document.getElementById('buttonBox');
+        const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        const words = ['funny', 'lame'];
+        const hints = ['laughable', 'not cool'];
+        var index = Math.floor(Math.random() * words.length);
+    
+        window.onload = function() {
+            secretText.innerHTML = words[index];
+            hintText.innerHTML = hints[index];
+
+            for (let i = 0; i < alphabet.length; i++) {
+                const button = document.createElement('button')
+                button.innerHTML = alphabet[i].toLocaleUpperCase();
+                button.addEventListener('click', function() {
+                    buttonClick(this);
+                })
+                buttonsDiv.appendChild(button);
+
+                if (i % 6 === 5) {
+                    const breakEl = document.createElement('br');
+                    buttonsDiv.appendChild(breakEl);
+                }
+            }
+        }
+
+        function buttonClick(button) {
+            alert(button.innerHTML);
+        }
+    </script>
+</body>
+</html>
